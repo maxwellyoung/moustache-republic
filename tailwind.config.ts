@@ -7,7 +7,15 @@ const config: Config = {
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        border: "#CCCCCC",
+        text: {
+          primary: "#222222",
+          secondary: "#888888",
+        },
+      },
+    },
   },
   plugins: [require("tailwindcss-animate")],
 };

@@ -121,7 +121,10 @@ export function MiniCart({ cart, updateQuantity, onClose }: MiniCartProps) {
           <div className="p-4 border-t border-[#CCCCCC]">
             <div className="flex justify-between items-center">
               <span className="text-[14px] text-[#222222]">Total</span>
-              <span className="text-[14px] text-[#222222]">
+              <span
+                className="text-[14px] text-[#222222]"
+                data-testid="total-price"
+              >
                 ${totalPrice.toFixed(2)}
               </span>
             </div>

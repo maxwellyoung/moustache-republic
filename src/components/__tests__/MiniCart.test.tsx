@@ -10,7 +10,7 @@ const mockCart: CartItem[] = [
     price: 75.0,
     size: "M",
     quantity: 1,
-    imageURL: "test-image.jpg",
+    imageURL: "https://example.com/test-image.jpg",
     description: "Test description",
     sizeOptions: [],
   },
@@ -18,7 +18,6 @@ const mockCart: CartItem[] = [
 
 describe("MiniCart", () => {
   beforeEach(() => {
-    // Clear all mocks before each test
     jest.clearAllMocks();
   });
 
@@ -28,17 +27,17 @@ describe("MiniCart", () => {
 
     expect(screen.getByText("Classic Tee")).toBeInTheDocument();
     expect(screen.getByText("Size: M")).toBeInTheDocument();
-    expect(screen.getByText("$75.00")).toBeInTheDocument();
+    expect(screen.getByTestId("total-price")).toHaveTextContent("$75.00");
   });
 
   it("calls updateQuantity when quantity buttons are clicked", () => {
     const mockUpdateQuantity = jest.fn();
     render(<MiniCart cart={mockCart} updateQuantity={mockUpdateQuantity} />);
 
-    fireEvent.click(screen.getByText("+"));
+    fireEvent.click(screen.getByRole("button", { name: "+" }));
     expect(mockUpdateQuantity).toHaveBeenCalledWith(1, "M", 2);
 
-    fireEvent.click(screen.getByText("-"));
+    fireEvent.click(screen.getByRole("button", { name: "-" }));
     expect(mockUpdateQuantity).toHaveBeenCalledWith(1, "M", 0);
   });
 
@@ -46,7 +45,7 @@ describe("MiniCart", () => {
     const mockUpdateQuantity = jest.fn();
     render(<MiniCart cart={mockCart} updateQuantity={mockUpdateQuantity} />);
 
-    expect(screen.getByText("$75.00")).toBeInTheDocument();
+    expect(screen.getByTestId("total-price")).toHaveTextContent("$75.00");
   });
 
   it("calls onClose when close button is clicked", () => {
