@@ -16,8 +16,3 @@ export interface CartItem extends Product {
   size: string;
   quantity: number;
 }
-
-export interface ApiError {
-  message: string;
-  code?: string;
-}
